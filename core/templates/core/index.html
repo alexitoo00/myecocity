@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock title %}
+<!-- bg-[url('/media/aibackground.jpg')] -->
+
+{% block content %}
+        <!-- <div class="flex relative items-center justify-center overflow-hidden">
+            <div class="overflow-hidden h-28 object-center">
+                <img class="opacity-60" src="/media/aibackground.png" alt="">
+            </div>
+            <img class="" src="/media/paintbrush2.png" alt="">
+
+        </div> -->
+
+        <div>
+            <h1 class="text-3xl text-sky-900 italic text-center pt-20 pb-14 font-light">A platform for making your city more sustainable and eco-friendly</h1>
+        </div>
+
+        <div class="">
+            <div class="grid grid-cols-2 text-center text-3xl pb-20">
+                <div class="col-span-1 rounded-full p-5 overflow-hidden relative mx-16 hover:bg-gray-200">
+                    <a href="/recyclair">
+                        <h3 class="p-5 text-green-600" >Recycling DataBase</h3>
+                        <p class="text-xl font-light">A recycling and composting database<br>to help you properly dispose of waste</p>
+                        <img class="absolute top-1/2 left-0" src="/media/recyclebinmap.png" alt="">
+                    </a>
+                </div>
+                <div class="col-span-1 bg-gray-100 p-5 rounded-full overflow-hidden relative h-96 mx-16 hover:bg-gray-200 ">
+                    <a href="">
+                        <h3 class="p-5 text-sky-700">Interactive Map</h3>
+                        <p class="text-xl font-light">An interactive map of eco-friendly businesses,<br>such as farmers markets and zero-waste stores.</p>
+                        <img class="absolute top-1/2" src="/media/ecofriendlybusinesses.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white grid grid-cols-2 overflow-hidden object-center">
+                <div class="col-span-1">
+                    <h3 class=" text-3xl text-sky-900 italic text-center my-10 font-light">Resources To Reduce Energy Consumption</h3>
+                    <div class="text-xl text-green-900 italic text-center font-light mx-16">
+                        <p>Our goal is to help you make the transition to sustainable energy practices in a smooth and cost-effective way.</p>
+                    </div>
+                    <div class="w-full flex justify-center">
+                        <a class="p-2 bg-sky-900 text-white rounded-xl m-5 align-baseline" href="#">Learn More</a>
+                    </div>
+                </div>
+                <img class="col-span-1 object-center mb-96" src="/media/reduceenergyconsumption.jpg" alt="">
+            </div>
+        
+        </div>
+{% endblock content %}
