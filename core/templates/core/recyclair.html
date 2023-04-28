@@ -136,6 +136,8 @@
   <script>
     const iconTypes = {
       "garbage": "garbage-bin.png",
+      "waste" : "garbage-bin.png",
+      "recycling": "garbage-bin.png",
       "both": "garbage-bin.png"
     }
     
@@ -157,7 +159,7 @@
               const marker = L.marker(point.coordinates, {
                   icon: L.icon({
                       iconUrl: iconFilename,
-                      iconSize: [38, 38],
+                      iconSize: [35, 40],
                       iconAnchor: [19, 38],
                       popupAnchor: [0, -38]
                   })
@@ -189,9 +191,8 @@
       })
         .then(response => response.json())
         .then(data => console.log(data))
+        .then(readPoints())
         .catch(error => console.error(error));
-
-      readPoints();
     }
 
   </script>
