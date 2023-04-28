@@ -133,6 +133,67 @@
             </div>
     </div>
     <script type="text/javascript" src="{% static 'js/recyclerapp.js'%}"></script>
+  <script>
+    const iconTypes = {
+      "garbage": "garbage-bin.png",
+      "both": "garbage-bin.png"
+    }
+    
+    readPoints();
+    function readPoints()
+    {
+      var points=[];
+      fetch('/json/')
+        .then(response => response.json())
+        .then(data => {
+            // Store the JSON data in a variable
+            points = data.points;
+            // Iterate over the points array and display the name of each point
+            for (const point of points) {
+            
+              // Get the icon filename based on the iconType
+              const iconFilename = '/media/icons/garbage-bin.png';
+              // Create the marker with the corresponding icon
+              const marker = L.marker(point.coordinates, {
+                  icon: L.icon({
+                      iconUrl: iconFilename,
+                      iconSize: [38, 38],
+                      iconAnchor: [19, 38],
+                      popupAnchor: [0, -38]
+                  })
+              }).addTo(map);
+              // Add a popup with the point name and tags
+              const popupContent = `<b>${point.name}</b><br>${point.coordinates.join(', ')}`;
+              marker.bindPopup(popupContent);
+            }
+          })
+      .catch(error => console.error(error));
+    }
 
+    function addPoint(name, type, lat, lng) {
+      const newPoint = {
+        "name": name,
+        "type": type,
+        "coordinates":
+        [
+          lat,
+          lng
+        ]
+      };
+      fetch('/update-points/', {
+        method: 'PUT',
+        body: JSON.stringify(newPoint),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+
+      readPoints();
+    }
+
+  </script>
 </body>
 </html>

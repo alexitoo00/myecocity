@@ -29,54 +29,48 @@ function onMapClick(e) {
           console.log("successfully added a bin to the database");
 
       }
-      xmlHttp.open("GET", `https://backend.recyclair.eu.org/setbins?xPos=` + e.latlng.lat + `&yPos=` + e.latlng.lng + `&binType=0&binEnabled=true`, true);
-      xmlHttp.send(null);
       var marker = L.marker([e.latlng.lat, e.latlng.lng], garbageBinInfo);
-      marker.bindPopup("Garbage Bin");
-      markers.addLayer(marker);
+      addPoint("Garbage", "garbage", e.latlng.lat, e.latlng.lng);
+          
     }
+
+    document.getElementById("addWasteBasket").onclick = function () {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          console.log("successfully added a bin to the database");
+
+      }
+      var marker = L.marker([e.latlng.lat, e.latlng.lng], recyclingBinInfo);
+      addPoint("Garbage", "garbage", e.latlng.lat, e.latlng.lng);
+     
+      
+    };
+    document.getElementById("addRecyclingBin").onclick = function () {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          console.log("successfully added a bin to the database");
+
+      }
+      var marker = L.marker([e.latlng.lat, e.latlng.lng], wasteBasketInfo);
+      addPoint("Garbage", "garbage", e.latlng.lat, e.latlng.lng);
+     
+      
+    };
+    document.getElementById("addBothBin").onclick = function () {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          console.log("successfully added a bin to the database");
+
+      }
+      var marker = L.marker([e.latlng.lat, e.latlng.lng], bothInfo);
+      addPoint("Garbage", "garbage", e.latlng.lat, e.latlng.lng);
+      
+      
+    };
   };
-
-  document.getElementById("addWasteBasket").onclick = function () {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        console.log("successfully added a bin to the database");
-
-    }
-    xmlHttp.open("GET", `https://backend.recyclair.eu.org/setbins?xPos=` + e.latlng.lat + `&yPos=` + e.latlng.lng + `&binType=3&binEnabled=true`, true);
-    xmlHttp.send(null);
-    var marker = L.marker([e.latlng.lat, e.latlng.lng], recyclingBinInfo);
-    marker.bindPopup("Recycling Bin");
-    markers.addLayer(marker);
-  };
-  document.getElementById("addRecyclingBin").onclick = function () {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        console.log("successfully added a bin to the database");
-
-    }
-    xmlHttp.open("GET", `https://backend.recyclair.eu.org/setbins?xPos=` + e.latlng.lat + `&yPos=` + e.latlng.lng + `&binType=1&binEnabled=true`, true);
-    xmlHttp.send(null);
-    var marker = L.marker([e.latlng.lat, e.latlng.lng], wasteBasketInfo);
-    marker.bindPopup("Recycling Bin");
-    markers.addLayer(marker);
-  };
-  document.getElementById("addBothBin").onclick = function () {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        console.log("successfully added a bin to the database");
-
-    }
-    xmlHttp.open("GET", `https://backend.recyclair.eu.org/setbins?xPos=` + e.latlng.lat + `&yPos=` + e.latlng.lng + `&binType=2&binEnabled=true`, true);
-    xmlHttp.send(null);
-    var marker = L.marker([e.latlng.lat, e.latlng.lng], bothInfo);
-    marker.bindPopup("Recycling And Garbage Bin");
-    markers.addLayer(marker);
-  };
-
 }
 map.on('click', onMapClick);
 var zoomState = false;
@@ -84,18 +78,23 @@ var currentZoomLevel = -1;
 var currentZoomState = false;
 var res;
 map.on("moveend", function () {
-    if (map.getZoom() >= 14) {
-      if (!zoomState ) {
-        if (!currentZoomState){
-          currentZoomLevel = map.getZoom();
-          currentZoomState = true;
-          res = map.getBounds().toBBoxString().split(",")
-        }
-        if (map.getZoom() == currentZoomLevel){
+  if (map.getZoom() >= 14) {
+    if (!zoomState) {
+      if (!currentZoomState) {
+        currentZoomLevel = map.getZoom();
+        currentZoomState = true;
+        res = map.getBounds().toBBoxString().split(",")
+      }
+      if (map.getZoom() == currentZoomLevel) {
         console.log(map.getBounds())
         //var res = map.getBounds().toBBoxString().split(",")
-        xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
-        xmlΗttp.send();
+        try {
+          xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
+          xmlΗttp.send();
+        }
+        catch {
+          console.log("Error in backend.recyclair.eu.org/getbins?");
+        }
         var modal = document.getElementById('loadingModal');
         modal.style.display = "block";
         zoomState = true;
@@ -107,98 +106,109 @@ map.on("moveend", function () {
     var idk = L.latLng(currCenter);
 
 
-    if (idk.lng>res[2])
-    { 
+    if (idk.lng > res[2]) {
       markers.clearLayers();
-      res = map.getBounds().toBBoxString().split(",")
-      xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
-      xmlΗttp.send();
+      res = map.getBounds().toBBoxString().split(",");
+      try {
+        xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
+        xmlΗttp.send();
+      } catch {
+        console.log("Error in backend.recyclair.eu.org/getbins?");
+      }
       var modal = document.getElementById('loadingModal');
-    modal.style.display = "block";
+      modal.style.display = "block";
       console.log("have to load new bins 1")
-     }
-    if(idk.lng<res[0]){
+    }
+    if (idk.lng < res[0]) {
       console.log("have to load new bins 2")
       markers.clearLayers();
-      res = map.getBounds().toBBoxString().split(",")
-      xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
-      xmlΗttp.send();
+      res = map.getBounds().toBBoxString().split(",");
+      try {
+        xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
+        xmlΗttp.send();
+      } catch {
+        console.log("Error in backend.recyclair.eu.org/getbins?");
+      }
       var modal = document.getElementById('loadingModal');
-    modal.style.display = "block";
+      modal.style.display = "block";
     }
-    if(idk.lat>res[3]){
+    if (idk.lat > res[3]) {
       console.log("have to load new bins 3");
       markers.clearLayers();
-      res = map.getBounds().toBBoxString().split(",")
-      xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
-      xmlΗttp.send();
+      res = map.getBounds().toBBoxString().split(",");
+      try {
+        xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
+        xmlΗttp.send();
+      } catch {
+        console.log("Error in backend.recyclair.eu.org/getbins?");
+      }
       var modal = document.getElementById('loadingModal');
-    modal.style.display = "block";
+      modal.style.display = "block";
     }
-    if(idk.lat < res[1]){
+    if (idk.lat < res[1]) {
       console.log("have to load new bins 4")
       markers.clearLayers();
-      res = map.getBounds().toBBoxString().split(",")
-      xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
-      xmlΗttp.send();
+      res = map.getBounds().toBBoxString().split(",");
+      try {
+        xmlΗttp.open("GET", "https://backend.recyclair.eu.org/getbins?sw_lat=" + res[1] + "&sw_lon=" + res[0] + "&ne_lat=" + res[3] + "&ne_lon=" + res[2], true);
+        xmlΗttp.send();
+      } catch {
+        console.log("Error in backend.recyclair.eu.org/getbins?");
+      }
       var modal = document.getElementById('loadingModal');
-    modal.style.display = "block";
+      modal.style.display = "block";
     }
-    }  
-    if (currentZoomLevel >= 14 && zoomState) {
-     // markers.clearLayers();
-      //na kanei update vazontas mono ta auta poy einai ektos tou bound poy exei valei idi
-      //zoomState = false;
+  }
+  if (currentZoomLevel >= 14 && zoomState) {
+    // markers.clearLayers();
+    //na kanei update vazontas mono ta auta poy einai ektos tou bound poy exei valei idi
+    //zoomState = false;
 
-    }
-    if (map.getZoom() < 14){
-      currentZoomState = false;
-      zoomState = false;
-      markers.clearLayers();
+  }
+  if (map.getZoom() < 14) {
+    currentZoomState = false;
+    zoomState = false;
+    markers.clearLayers();
 
-    }
+  }
 });
-L.control.locate({ locateOptions: { enableHighAccuracy: true ,maxZoom:16} }).addTo(map);
+L.control.locate({ locateOptions: { enableHighAccuracy: true, maxZoom: 16 } }).addTo(map);
 var garbageBinInfo = {
   title: "Garbage Bin",
-  icon: L.icon({ iconUrl: 'res/garbage-bin.png', iconSize: [35, 40] })
+  icon: L.icon({ iconUrl: 'media/icons/garbage-bin.png', iconSize: [35, 40] })
 }
 var recyclingBinInfo = {
   title: "Recycling Bin",
-  icon: L.icon({ iconUrl: 'res/recycling-bin.png', iconSize: [35, 40] })
+  icon: L.icon({ iconUrl: 'media/icons/garbage-bin.png', iconSize: [35, 40] })
 }
 var bothInfo = {
   title: "Recycling and Garbage Bin",
-  icon: L.icon({ iconUrl: 'res/both.png', iconSize: [35, 40] })
+  icon: L.icon({ iconUrl: 'media/icons/garbage-bin.png', iconSize: [35, 40] })
 }
 var wasteBasketInfo = {
   title: "Small Waste Basket",
-  icon: L.icon({ iconUrl: 'res/waste_basket.png', iconSize: [35, 40] })
+  icon: L.icon({ iconUrl: 'media/icons/garbage-bin.png', iconSize: [35, 40] })
 }
 var xmlΗttp = new XMLHttpRequest();
 xmlΗttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     var myArr = JSON.parse(this.responseText);
-    if (myArr != null ){
-    for (var i = 0; i < myArr.length; i++) {
-      if (myArr[i].BinType == 0) {
-        var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], garbageBinInfo);
-        marker.bindPopup("Garbage Bin, ID:" + myArr[i].BinId);
-      } else if (myArr[i].BinType == 1) {
-        var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], recyclingBinInfo);
-        marker.bindPopup("Recycling Bin, ID:" + myArr[i].BinId);
-      } else if (myArr[i].BinType == 2) {
-        var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], bothInfo);
-        marker.bindPopup("Garbage and Recycling Bin, ID:" + myArr[i].BinId);
-      } else {
-        var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], wasteBasketInfo);
-        marker.bindPopup("Small Waste Basket, ID:" + myArr[i].BinId);
-      }
+    if (myArr != null) {
+      for (var i = 0; i < myArr.length; i++) {
+        if (myArr[i].BinType == 0) {
+          var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], garbageBinInfo);
+        } else if (myArr[i].BinType == 1) {
+          var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], recyclingBinInfo);
+        } else if (myArr[i].BinType == 2) {
+          var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], bothInfo);
+        } else {
+          var marker = L.marker([myArr[i].BinLocationX, myArr[i].BinLocationY], wasteBasketInfo);
+        }
 
-      markers.addLayer(marker);
+        
+      }
     }
-  }
-  
+
     var modal = document.getElementById('loadingModal');
     modal.style.display = "none";
   }

@@ -1,0 +1,20 @@
+{
+    "points": [
+        {
+            "name": "Point A",
+            "type": "garbage",
+            "coordinates": [
+                42.235900170840964,
+                -20.728264139189655
+            ]
+        },
+        {
+            "name": "Point B",
+            "type": "both",
+            "coordinates": [
+                42.235900170840964,
+                -8.738264139189656
+            ]
+        }
+    ]
+}
