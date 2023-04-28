@@ -136,9 +136,9 @@
   <script>
     const iconTypes = {
       "garbage": "garbage-bin.png",
-      "waste" : "garbage-bin.png",
-      "recycling": "garbage-bin.png",
-      "both": "garbage-bin.png"
+      "waste" : "bicycle.png",
+      "recycling": "charging_station.png",
+      "both": "shop.png"
     }
     
     readPoints();
@@ -154,7 +154,7 @@
             for (const point of points) {
             
               // Get the icon filename based on the iconType
-              const iconFilename = '/media/icons/garbage-bin.png';
+              const iconFilename = '/media/icons/' + iconTypes[point.type];
               // Create the marker with the corresponding icon
               const marker = L.marker(point.coordinates, {
                   icon: L.icon({
@@ -165,7 +165,7 @@
                   })
               }).addTo(map);
               // Add a popup with the point name and tags
-              const popupContent = `<b>${point.name}</b><br>${point.coordinates.join(', ')}`;
+              const popupContent = `<b>${point.name}</b><br>${point.description}<br><br>${point.coordinates.join(', ')}`;
               marker.bindPopup(popupContent);
             }
           })
