@@ -1,1 +1,156 @@
-{"points": [{"name": "Waste basket", "type": "waste", "coordinates": [37.965827060298245, 23.683041716475074]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [37.95134489220276, 23.715322698703005]}, {"name": "Recycling bin", "type": "recycling", "coordinates": [37.974623244697895, 23.771986124954232]}, {"name": "Waste and recycling bin", "type": "both", "coordinates": [37.99288887526625, 23.722019285441817]}, {"name": "Waste basket", "type": "waste", "coordinates": [37.99559450790289, 23.763400757340435]}, {"name": "Waste basket", "type": "waste", "coordinates": [37.96030522628786, 23.72277938903604]}, {"name": "Waste basket", "type": "waste", "coordinates": [37.94514511178782, 23.7035481655811]}, {"name": "Waste basket", "type": "waste", "coordinates": [37.9743796738937, 23.740808661025078]}, {"name": "Recycling bin", "type": "recycling", "coordinates": [37.98966904403617, 23.692387187683135]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [37.95015370995601, 23.748363784525207]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [37.9401361721973, 23.73187987870669]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [37.95678619283914, 23.77411988736667]}, {"name": "Waste and recycling bin", "type": "both", "coordinates": [38.01009499931992, 23.73291012282035]}, {"name": "Waste and recycling bin", "type": "both", "coordinates": [37.97789786422196, 23.707669142035694]}, {"name": "Recycling bin", "type": "recycling", "coordinates": [37.982768926270275, 23.653753033420944]}, {"name": "Recycling bin", "type": "recycling", "coordinates": [37.97654473405279, 23.69032669945581]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [38.00062672080263, 23.746131588945637]}, {"name": "Garbage bin", "type": "garbage", "coordinates": [38.02240193339469, 23.670580353944015]}]}
+{
+    "points": [
+        {
+            "name": "Waste basket",
+            "type": "waste",
+            "coordinates": [
+                37.965827060298245,
+                23.683041716475074
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                37.95134489220276,
+                23.715322698703005
+            ]
+        },
+        {
+            "name": "Recycling bin",
+            "type": "recycling",
+            "coordinates": [
+                37.974623244697895,
+                23.771986124954232
+            ]
+        },
+        {
+            "name": "Waste and recycling bin",
+            "type": "both",
+            "coordinates": [
+                37.99288887526625,
+                23.722019285441817
+            ]
+        },
+        {
+            "name": "Waste basket",
+            "type": "waste",
+            "coordinates": [
+                37.99559450790289,
+                23.763400757340435
+            ]
+        },
+        {
+            "name": "Waste basket",
+            "type": "waste",
+            "coordinates": [
+                37.96030522628786,
+                23.72277938903604
+            ]
+        },
+        {
+            "name": "Waste basket",
+            "type": "waste",
+            "coordinates": [
+                37.94514511178782,
+                23.7035481655811
+            ]
+        },
+        {
+            "name": "Waste basket",
+            "type": "waste",
+            "coordinates": [
+                37.9743796738937,
+                23.740808661025078
+            ]
+        },
+        {
+            "name": "Recycling bin",
+            "type": "recycling",
+            "coordinates": [
+                37.98966904403617,
+                23.692387187683135
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                37.95015370995601,
+                23.748363784525207
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                37.9401361721973,
+                23.73187987870669
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                37.95678619283914,
+                23.77411988736667
+            ]
+        },
+        {
+            "name": "Waste and recycling bin",
+            "type": "both",
+            "coordinates": [
+                38.01009499931992,
+                23.73291012282035
+            ]
+        },
+        {
+            "name": "Waste and recycling bin",
+            "type": "both",
+            "coordinates": [
+                37.97789786422196,
+                23.707669142035694
+            ]
+        },
+        {
+            "name": "Recycling bin",
+            "type": "recycling",
+            "coordinates": [
+                37.982768926270275,
+                23.653753033420944
+            ]
+        },
+        {
+            "name": "Recycling bin",
+            "type": "recycling",
+            "coordinates": [
+                37.97654473405279,
+                23.69032669945581
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                38.00062672080263,
+                23.746131588945637
+            ]
+        },
+        {
+            "name": "Garbage bin",
+            "type": "garbage",
+            "coordinates": [
+                38.02240193339469,
+                23.670580353944015
+            ]
+        },
+        {
+            "name": "Recycling bin",
+            "type": "recycling",
+            "coordinates": [
+                38.00833669718854,
+                23.698738934482346
+            ]
+        }
+    ]
+}

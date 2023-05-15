@@ -165,7 +165,7 @@
                   })
               }).addTo(map);
               // Add a popup with the point name and tags
-              const popupContent = `<b>${point.name}</b><br>${point.description}<br><br>${point.coordinates.join(', ')}`;
+              const popupContent = `<b>${point.name}</b><br>${if(point.description.}<br><br>${point.coordinates.join(', ')}`;
               marker.bindPopup(popupContent);
             }
           })
